@@ -5,12 +5,15 @@
          <meta charset="UTF-8">
          <title>PhaserGame</title>
          <meta name="viewport" content="width=device-width,initial-scale=1">
+         <script src="javascripts/phaser.min.js"></script>
+         <script src="javascripts/riffwave.js"></script>
+         <script src="javascripts/sfxr.js"></script>
          <style>
                  #main {
                          width: 780px;
                          height: 580px;
-                         border: 16px solid orange;
-                         background-color: #1a2d45;
+                         border: 16px solid black;
+                         background-color: white;
                  }
 
                  #main_menu {
@@ -18,11 +21,8 @@
                          left: 200px;
                          top: 50px;
                          width: 400px;
-                         color: orange;
-                 }
-
-                 h1 {
-                         font-size: 48px;
+                         color: black;
+                         font-family: Coolvetica, Helvetica, sans-serif
                  }
 
                  button,
@@ -39,7 +39,6 @@
                          left: 14px;
                  }
          </style>
-         <script src="javascripts/phaser.min.js"></script>
  </head>
 
  <body>
@@ -48,9 +47,9 @@
                  <script type="text/javascript" src="javascripts/loader.js"></script>
                  <!-- <script type="text/javascript" src="sprites.js"></script> -->
                  <div id=main_menu>
-                         <h1>Phaser Game</h1>
-                         <p>Story</p>
-                         <p>Instructions</p>
+                         <h1 style="font-size: 48px">Phaser Game</h1>
+                         <p style="font-size: 18px">Story</p>
+                         <p style="font-size: 18px">Instructions</p>
                          <button id="start" onclick="start(); 
 					   document.getElementById('main_menu').remove()">
                                  <h2>Play</h2>
