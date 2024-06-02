@@ -1,6 +1,4 @@
-var game;
-
-start = function() {
+var start = function() {
         var config = {
                 type: Phaser.AUTO,
                 width: 800,
@@ -9,7 +7,6 @@ start = function() {
                 scene: {
                         preload: preload,
                         create: create,
-                        update: update,
                 }
         };
 
@@ -35,14 +32,16 @@ start = function() {
                         progressBar.destroy();
                         progressBox.destroy();
                 });
+
+                [
+                        ['background', 'phaser_icon.png']
+                ].forEach(a => this.load.image(a[0], `assets/images/${a[1]}`))
         }
 
         function create() {
-                this.scene.add('main', MainScene, true, {
+                game.scene.add('main', MainScene, true, {
                         x: config.width / 2,
                         y: config.height / 2
                 });
         }
-
-        function update() {}
 };
