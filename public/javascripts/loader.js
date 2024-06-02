@@ -7,7 +7,10 @@ var start = () => {
                 scene: {
                         preload: preload,
                         create: create,
-                }
+                },
+                physics: {
+                        default: 'arcade'
+                },
         };
 
         game = new Phaser.Game(config);
@@ -30,7 +33,8 @@ var start = () => {
                 });
 
                 [
-                        ['background', 'phaser_icon.png']
+                        ['background', 'phaser_icon.png'],
+                        ['mySprite', 'red.png']
                 ].forEach(a => this.load.image(a[0], `assets/images/${a[1]}`))
                 this.load.json('sfx', 'assets/sfx.json');
         }
