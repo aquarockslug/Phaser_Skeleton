@@ -1,0 +1,12 @@
+session_name: phaser
+windows:
+  - window-name: server
+    panes:
+      - shell_command:
+          - 'firefox localhost:8080; pnpm run start'
+      - shell_command:
+          - lg
+  - window-name: nvim
+    panes:
+      - shell_command:
+          - nvim
