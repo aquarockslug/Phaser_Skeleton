@@ -10,3 +10,7 @@ windows:
     panes:
       - shell_command:
           - nvim
+  - window-name: shell
+    panes:
+      - shell_command:
+          -
