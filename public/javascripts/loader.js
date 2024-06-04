@@ -1,15 +1,16 @@
 var start = () => {
         var config = {
                 type: Phaser.AUTO,
-                width: 800,
-                height: 600,
+                width: 256,
+                height: 240,
                 backgroundColor: '#1a2d45',
                 scene: {
                         preload: preload,
                         create: create,
                 },
                 physics: {
-                        default: 'arcade'
+                        default: 'arcade',
+                        debug: true,
                 },
         };
 
@@ -18,13 +19,13 @@ var start = () => {
         function preload() {
                 var [loadBar, loadBox] = [this.add.graphics(), this.add.graphics()]
                 loadBox.fillStyle(0x222222, 0.8);
-                loadBox.fillRect(config.width / 4, config.height / 2, 320, 50);
+                loadBox.fillRect(config.width / 4, config.height / 2, 128, 32);
 
                 this.load.on('progress', (value) => {
                         loadBar.clear();
                         loadBar.fillStyle(0xffffff, 1);
                         loadBar.fillRect(config.width / 4 + 10,
-                                config.height / 2 + 10, 300 * value, 30);
+                                config.height / 2 + 10, 100 * value, 16);
                 });
 
                 this.load.on('complete', () => {
@@ -33,10 +34,15 @@ var start = () => {
                 });
 
                 [
-                        ['background', 'phaser_icon.png'],
+                        ['background', 'background.png'],
                         ['mySprite', 'red.png']
                 ].forEach(a => this.load.image(a[0], `assets/images/${a[1]}`))
                 this.load.json('sfx', 'assets/sfx.json');
+
+                this.load.spritesheet('player', 'assets/images/climber_sheet.png', {
+                        frameWidth: 16,
+                        frameHeight: 22
+                });
         }
 
         function create(sfx = {}) {
@@ -52,15 +58,16 @@ var start = () => {
 
         function gameOver(outcome, endedGame) {
                 endedGame.add.text(
-                        endedGame.center.x - 125,
-                        endedGame.center.y / 2,
+                        endedGame.center.x - 64,
+                        endedGame.player.y / 2,
                         outcome, {
                                 fontFamily: 'coolvetiva',
-                                fontSize: 64,
-                                color: 'black'
+                                fontSize: 32,
+                                color: 'white'
                         }
                 )
                 endedGame.scene.pause()
                 setTimeout(() => endedGame.scene.restart(), 2500)
         }
 };
+start()

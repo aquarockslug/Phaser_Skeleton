@@ -9,18 +9,18 @@
          <script src="javascripts/riffwave.js"></script>
          <script src="javascripts/sfxr.js"></script>
          <style>
-                 #main {
-                         width: 780px;
-                         height: 580px;
-                         border: 16px solid black;
+                 body {
+                         width: 256px;
+                         height: 240px;
+                         margin: 0px;
                          background-color: white;
                  }
 
                  #main_menu {
                          position: absolute;
-                         left: 200px;
+                         left: 64px;
                          top: 50px;
-                         width: 400px;
+                         width: 128px;
                          color: black;
                          font-family: Coolvetica, Helvetica, sans-serif
                  }
@@ -29,32 +29,30 @@
                  h1 {
                          display: flex;
                          width: 100%;
-                         margin: 32px auto;
+                         margin: 6px auto;
                          justify-content: center;
                  }
 
                  canvas {
                          position: absolute;
-                         top: 14px;
-                         left: 14px;
+                         top: 0px;
+                         left: 0px;
                  }
          </style>
  </head>
 
  <body>
-         <div id="main">
-                 <script type="text/javascript" src="javascripts/game.js"></script>
-                 <script type="text/javascript" src="javascripts/sprites.js"></script>
-                 <script type="text/javascript" src="javascripts/loader.js"></script>
-                 <div id=main_menu>
-                         <h1 style="font-size: 48px">Phaser Game</h1>
-                         <p style="font-size: 18px">Story</p>
-                         <p style="font-size: 18px">Instructions</p>
-                         <button id="start" onclick="start(); 
+         <script type="text/javascript" src="javascripts/game.js"></script>
+         <script type="text/javascript" src="javascripts/sprites.js"></script>
+         <script type="text/javascript" src="javascripts/loader.js"></script>
+         <div id=main_menu>
+                 <h1 style="font-size: 16px">Phaser Game</h1>
+                 <p style="font-size: 8px">Story</p>
+                 <p style="font-size: 8px">Instructions</p>
+                 <button id="start" onclick="start(); 
 					   document.getElementById('main_menu').remove()">
-                                 <h2>Play</h2>
-                         </button>
-                 </div>
+                         Play
+                 </button>
          </div>
 
  </body>
