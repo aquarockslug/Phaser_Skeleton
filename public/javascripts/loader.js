@@ -43,6 +43,10 @@ var start = () => {
                         frameWidth: 16,
                         frameHeight: 22
                 });
+                this.load.spritesheet('player2', 'assets/images/pick_sheet.png', {
+                        frameWidth: 24,
+                        frameHeight: 24
+                });
         }
 
         function create(sfx = {}) {
