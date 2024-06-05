@@ -12,15 +12,13 @@ class mySprite extends Phaser.Physics.Arcade.Sprite {
 
         update() {
                 this.move()
-                if (this.state == 'jumpSquat') this.setScale(1, 0.75)
-                else this.setScale(1)
-
+                this.setScale(1, this.state == 'jumpSquat' ? 0.75 : 1)
                 if (this.lastState != this.state) console.log(this.state)
                 this.lastState = this.state
         }
 
-        move(speed = 50) {
-                const jumpBoost = this.state == 'jumping' ? 1.5 : 1
+        move(speed = 75) {
+                const jumpBoost = this.state == 'jumping' ? 1.25 : 1
                 if (this.cursors.up.isDown) this.jump()
                 if (this.cursors.right.isDown) this.body.setVelocityX(speed * jumpBoost)
                 else if (this.cursors.left.isDown) this.body.setVelocityX(-speed * jumpBoost)
@@ -28,13 +26,12 @@ class mySprite extends Phaser.Physics.Arcade.Sprite {
         }
 
         jump(power = 200) {
-                if (this.state == 'jumping' || this.state == 'jumpSquat' ||
-                        Math.abs(this.body.velocity.y) > 10) return
+                if (this.state != 0 || Math.abs(this.body.velocity.y) > 10) return
                 this.state = 'jumpSquat'
-                var [jumpPower, overtime] = [1, 0]
-                const held = () => jumpPower <= 1.5 ?
-                        jumpPower += 0.1 : overtime++
+                var jumpPower = 1
+                const held = () => jumpPower <= 1.5 ? jumpPower += 0.1 : launch()
                 const launch = () => {
+                        if (this.state != 'jumpSquat') return
                         this.scene.sfx.jump.play()
                         this.timer.destroy()
                         this.body.setVelocityY(-jumpPower * power)

@@ -41,7 +41,7 @@ var start = () => {
 
                 this.load.spritesheet('player', 'assets/images/climber_sheet.png', {
                         frameWidth: 16,
-                        frameHeight: 22
+                        frameHeight: 24
                 });
                 this.load.spritesheet('player2', 'assets/images/pick_sheet.png', {
                         frameWidth: 24,
