@@ -13,8 +13,8 @@ class mySprite extends Phaser.Physics.Arcade.Sprite {
         update() {
                 this.move()
                 this.setScale(1, this.state == 'jumpSquat' ? 0.75 : 1)
-                if (this.lastState != this.state) console.log(this.state)
-                this.lastState = this.state
+                // if (this.lastState != this.state) console.log(this.state)
+                // this.lastState = this.state
         }
 
         move(speed = 75) {
@@ -25,8 +25,9 @@ class mySprite extends Phaser.Physics.Arcade.Sprite {
                 else this.body.setVelocityX(0)
         }
 
-        jump(power = 200) {
-                if (this.state != 0 || Math.abs(this.body.velocity.y) > 10) return
+        jump(power = 250) {
+                // possible double jump at peak of jump when jumping state expires
+                if (this.state != 0 || Math.abs(this.body.velocity.y) > 5) return
                 this.state = 'jumpSquat'
                 var jumpPower = 1
                 const held = () => jumpPower <= 1.5 ? jumpPower += 0.1 : launch()
@@ -37,10 +38,10 @@ class mySprite extends Phaser.Physics.Arcade.Sprite {
                         this.body.setVelocityY(-jumpPower * power)
                         this.state = 'jumping'
                         setTimeout(() => this.state == 'jumping' ?
-                                this.state = 0 : null, 500)
+                                this.state = 0 : null, 700)
                 }
                 this.timer = this.scene.time.addEvent({
-                        delay: 20,
+                        delay: 50,
                         callback: held,
                         callbackScope: this,
                         loop: true
@@ -92,8 +93,8 @@ class mySprite extends Phaser.Physics.Arcade.Sprite {
                                 this.state == 'jumping') this.pickSwing()
                 })
                 this.scene.input.keyboard.on('keyup', e => {
-                        if (this.cursors.left.isUp && this.cursors.right.isUp &&
-                                this.state != 'jumping')
+                        if (Math.abs(this.body.velocity.y) > 5) return
+                        if (this.cursors.left.isUp && this.cursors.right.isUp)
                                 this.play('idle')
                 })
         }

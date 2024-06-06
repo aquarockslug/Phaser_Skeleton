@@ -4,6 +4,7 @@ class MainScene extends Phaser.Scene {
                 super({
                         key: 'main'
                 })
+                // setInterval(() => console.clear(), 10000)
         }
 
         create(data) {
@@ -13,6 +14,7 @@ class MainScene extends Phaser.Scene {
                         x: data.x,
                         y: data.y
                 }
+                this.createBackground()
                 this.player = new mySprite({
                         scene: this,
                         x: this.center.x,
@@ -24,9 +26,14 @@ class MainScene extends Phaser.Scene {
                 this.cameras.main.startFollow(this.player, true, 0, 0.05)
                 this.cameras.main.setBounds(0, 0, -245, 256)
 
-                this.background = this.add.image(this.center.x, this.center.y - 241, 'background');
-                this.background.setDepth(-1)
-                this.background.enable = false
+        }
+
+        createBackground() {
+                this.add.image(this.center.x * 0.5, this.center.y, 'ice_wall')
+                        .setScale(1.1, 1)
+                this.add.image(this.center.x * 1.5, this.center.y, 'ice_wall')
+                        .setScale(1.1, 1).flipX = true
+                this.add.image(this.center.x, this.center.y - 241, 'background')
         }
 
         update() {

@@ -1,6 +1,7 @@
 session_name: phaser
 windows:
   - window-name: server
+    layout: even-vertical
     panes:
       - shell_command:
           - 'firefox localhost:8080; pnpm run start'
