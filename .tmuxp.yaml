@@ -4,7 +4,7 @@ windows:
     layout: even-vertical
     panes:
       - shell_command:
-          - 'firefox localhost:8080; pnpm run start'
+          - 'firefox localhost:8080; pnpm run debug'
       - shell_command:
           - lg
   - window-name: nvim

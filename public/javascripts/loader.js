@@ -1,8 +1,9 @@
 var start = () => {
+        var bodyElement = document.getElementById('main')
         var config = {
                 type: Phaser.AUTO,
-                width: 256,
-                height: 240,
+                width: bodyElement.clientWidth,
+                height: bodyElement.clientHeight,
                 backgroundColor: '#3b5dc9',
                 scene: {
                         preload: preload,
@@ -19,7 +20,7 @@ var start = () => {
         function preload() {
                 var [loadBar, loadBox] = [this.add.graphics(), this.add.graphics()]
                 loadBox.fillStyle(0x222222, 0.8)
-                loadBox.fillRect(config.width / 4, config.height / 2, 128, 32)
+                loadBox.fillRect(config.width / 4, config.height / 2, config.width / 2, 64)
 
                 this.load.on('progress', (value) => {
                         loadBar.clear()
@@ -34,20 +35,9 @@ var start = () => {
                 });
 
                 [
-                        ['background', 'background.png'],
-                        ['ice_wall', 'ice_wall.png'],
-                        ['mySprite', 'red.png']
+                        ['nes', 'nes.png'],
                 ].forEach(a => this.load.image(a[0], `assets/images/${a[1]}`))
                 this.load.json('sfx', 'assets/sfx.json');
-
-                this.load.spritesheet('player', 'assets/images/climber_sheet.png', {
-                        frameWidth: 16,
-                        frameHeight: 24
-                });
-                this.load.spritesheet('player2', 'assets/images/pick_sheet.png', {
-                        frameWidth: 24,
-                        frameHeight: 24
-                });
         }
 
         function create(sfx = {}) {
@@ -75,4 +65,4 @@ var start = () => {
                 setTimeout(() => endedGame.scene.restart(), 2500)
         }
 }
-start()
+// start()
